@@ -8,6 +8,4 @@ module.exports = function (grunt) {
 
     // App tasks
     grunt.registerTask('default', ['clean:all', 'less', 'copy', 'webpack:index']);
-    grunt.registerTask('release', ['default', 'compress:zip']);
-
 };

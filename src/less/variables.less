@@ -1,0 +1,81 @@
+// colors
+@blue:      #092729;
+@blueLight: lighten(@blue, 5%);
+@blueDark:  darken(@blue, 5%);
+@red:       #C50000;
+@redDimm:   #9D1417; // used in markers, footer buttons
+@redDark:   darken(@red, 25%);
+@green:     #65A312;
+@orange:    #B37205;
+@greenDimm: darken(@green, 10%);
+@greenDark: darken(@green, 25%);
+@grey:      #C9C9BF;
+
+:root {
+
+    // iphone 4,5 : 320|640
+    @media(min-width:1px) and (max-width:320px),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width:1px) and (max-width:640px) {
+        font-size: 14px;
+    }
+
+    //  iphone 6 : 375|750    iphone 6 Plus : 414|828
+   @media (min-width:321px) and (max-width: 450px),
+   (-webkit-min-device-pixel-ratio: 2) and (min-width:642px) and (max-width:900px) {
+       font-size: 16px;
+   }
+
+    // ipad : 768|1536
+    @media(min-width:451px) and (max-width:800px),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width:902px) and (max-width:1600px) {
+        font-size: 18px;
+    }
+
+} // root
+
+//sizes
+@sTextSmall: 0.8rem;
+@sText: 1rem;
+@sTextBig: 1.4rem;
+
+@font-face {
+    font-family: HelveticaNeue-Thin;
+    src: url("fonts/HelveticaNeue-Thin.ttf") format("opentype");
+}
+
+
+@font-face {
+    font-family: HelveticaNeue-Regular;
+    src: url("fonts/HelveticaNeue.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: HelveticaNeue-UltraLight;
+    src: url("fonts/HelveticaNeue-UltraLight.ttf") format("opentype");
+}
+
+
+// typography
+.helveticaThin {
+  font-family: "HelveticaNeue-Thin", "Helvetica Neue Thin", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.helveticaUltraLight {
+  font-family: "HelveticaNeue-UltraLight", "Helvetica Neue UltraLight", "Helvetica UltraLight", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.helveticaRegular {
+  font-family: "HelveticaNeue-Regular", "Helvetica Neue Regular", "Helvetica Regular", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+// presets
+.clearfix {
+  zoom: 1;
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
