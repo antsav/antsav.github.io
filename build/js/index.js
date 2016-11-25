@@ -13,15 +13,15 @@ webpackJsonp([0],[
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var HelloMessage = _react2.default.createClass({
-	  displayName: 'HelloMessage',
+	    displayName: 'HelloMessage',
 
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Hello!'
-	    );
-	  }
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Hello!'
+	        );
+	    }
 	});
 
 	(0, _reactDom.render)(_react2.default.createElement(HelloMessage, { message: 'World' }), document.getElementById('masterContainer'));
