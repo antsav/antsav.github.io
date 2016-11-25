@@ -21,6 +21,7 @@
         "no-unused-vars" : 0,
         "max-len": ["warn", 140],
         "semi": 0,
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "require-jsdoc": 0
     }
 }

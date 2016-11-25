@@ -1,0 +1,66 @@
+html, body {
+    font-family: 'Helvetica';
+    font-size: 1rem;
+    height: 100%;
+    color: white;
+    background-color: @blue;
+
+    //hack to render faster on ios and android
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+} // html, body
+
+h1 {
+    font-size: 2.3rem;
+    .helveticaUltraLight;
+    letter-spacing: .15rem;
+} // h1
+h2 {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    .helveticaThin;
+    letter-spacing: .15rem;
+}
+p {
+    letter-spacing: .05rem;
+}
+
+
+
+#masterContainer {
+    width: 100%;
+    height: 100%;
+    position:relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    .narrow {
+        text-align: center;
+        max-width: 30rem;
+        margin: auto;
+    } // narrow
+    .line {
+        border-bottom: 1px solid darken(white, 50%);
+        margin: .8rem auto;
+        max-width: 17rem;
+    }// line
+}
+
+
+// presets
+.clearfix {
+  zoom: 1;
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
