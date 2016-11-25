@@ -10,7 +10,7 @@ import constants from './constants'
 let callers = {
     fetchAppStoreData: (callback) => {
         request
-            .get('http://itunes.apple.com/lookup')
+            .get('https://itunes.apple.com/lookup')
             .accept('application/json')
             .withCredentials()
             .query({id: constants.appstoreId})

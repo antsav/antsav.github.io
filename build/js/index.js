@@ -103,7 +103,7 @@ webpackJsonp([0],{
 	// libs
 	var callers = {
 	    fetchAppStoreData: function fetchAppStoreData(callback) {
-	        _superagent2.default.get('http://itunes.apple.com/lookup').accept('application/json').withCredentials().query({ id: _constants2.default.appstoreId }).timeout(7000) // error will be triggered if no responce
+	        _superagent2.default.get('https://itunes.apple.com/lookup').accept('application/json').withCredentials().query({ id: _constants2.default.appstoreId }).timeout(7000) // error will be triggered if no responce
 	        .end(function (err, res) {
 	            callback(res);
 	        });
