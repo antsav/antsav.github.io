@@ -26,6 +26,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-less": "^1.4.0",
     "grunt-webpack": "^1.0.18",
+    "json-loader": "^0.5.4",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-motion": "^0.4.5",
