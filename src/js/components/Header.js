@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
-
+import constants from '../helpers/constants'
+import H from '../helpers/helper'
 
 class Header extends Component {
     iosClick() {
-        window.location.href='https://itunes.apple.com/ru/app/id1036264023'
+        let country = this.props.language === 'ru' ? 'ru' : 'us'
+        window.location.href='https://itunes.apple.com/' + country + '/app/id' + constants.appstoreId
     }
 
     androidClick() {
@@ -17,20 +19,21 @@ class Header extends Component {
                 <h1>Gymap</h1>
                 <div className="line" />
                 <div className="subheader">
-                    <h2>
-                        visual workout log<br/>
-                        for professionals
-                    </h2>
+                    <h2 dangerouslySetInnerHTML ={{__html: H.loc(this.props.language, 'visual workout log<br/>for professionals')}} />
                 </div>
 
                 <div className="downloadButton ios"
                     onClick={this.iosClick.bind(this)} >
-                    <p>Download in AppStore</p>
+                    <p>{H.loc(this.props.language, 'Download in AppStore')}</p>
+                    {this.props.iosSize &&
+                        <div className="fileSize">{H.bytesToSize(this.props.iosSize)}</div>
+                    }
                 </div>
 
                 <div className="downloadButton android"
                      onClick={this.androidClick.bind(this)} >
-                        <p>Download for Android</p>
+                        <p>{H.loc(this.props.language, 'Download for Android')}</p>
+                        <div className="fileSize">5 MB</div>
                 </div>
 
 

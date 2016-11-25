@@ -4,42 +4,40 @@ module.exports = function webpack(grunt) {
 
     var path = require('path');
     var webpack = require('webpack');
-    var node_modules_dir = path.resolve(__dirname, 'node_modules');
+    var path = path.resolve(__dirname, 'node_modules');
 
     // Options
     return {
-        index:{
+        index: {
             entry: {
-              app: './src/js/index.js',
-              vendors: [
-                  'react', 'react-dom','react-motion',
-                  'superagent'
-              ]
+                app: './src/js/index.js',
+                vendors: [
+                    'react', 'react-dom'
+                ],
             },
             output: {
-              path: 'build/js',
-              filename: 'index.js'
+                path: 'build/js',
+                filename: 'index.js',
             },
             module: {
-              loaders: [
-                  { test: /\.json$/, loader: "json-loader" },
-                  {
-                    test: /\.jsx$|\.js$/,
-                    loader: 'babel-loader',
-                    exclude: [node_modules_dir],
-                    query: {
-                        cacheDirectory: true,
-                        presets: ['react', 'es2015'],
-                        plugins: ['add-module-exports'] //'transform-runtime'
-                    }
-                  }
-            ]
+                loaders: [
+                  {test: /\.json$/, loader: 'json-loader'},
+                    {
+                        test: /\.jsx$|\.js$/,
+                        loader: 'babel-loader',
+                        exclude: [path],
+                        query: {
+                            cacheDirectory: true,
+                            presets: ['react', 'es2015'],
+                            plugins: ['add-module-exports'], // 'transform-runtime'
+                        },
+                    },
+                ],
             },
             plugins: [
-              new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js', Infinity)
-            ]
-        }
+                new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js', Infinity),
+            ],
+        },
 
     };
-
 };

@@ -1,15 +1,19 @@
-import React from 'react'
-import {render} from 'react-dom'
+import React, {Component} from 'react'
 
 
-let Language = React.createClass({
-    render: function() {
+class Language extends Component {
+    render() {
         return(
-            <div className="languageComponent narrow">
-                <p>Русский</p>
+            <div className="languageComponent narrow"
+                 onClick={this.props.toggleLanguage}>
+                {this.props.language === 'ru' ?
+                    <p>English</p>
+                :
+                    <p>Русский</p>
+                }
             </div>
         )
-    },
-});
+    }
+}
 
 export default Language

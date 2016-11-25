@@ -28,6 +28,16 @@
         margin: 1rem auto;
         line-height: 1.3rem;
         box-shadow: 0 .3rem 1rem rgba(0,0,0,.5);
+        position: relative;
+        cursor:pointer;
+
+        .fileSize {
+            position: absolute;
+            right: -3rem;
+            bottom: 0rem;
+            font-size: .8rem;
+            color: lighten(@blue, 13%);
+        }
 
         &.ios {
             background:lighten(@blue, 7%) url("../img/apple_logo.svg") no-repeat;
