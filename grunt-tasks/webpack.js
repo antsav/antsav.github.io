@@ -30,7 +30,7 @@ module.exports = function webpack(grunt) {
                     query: {
                         cacheDirectory: true,
                         presets: ['react', 'es2015'],
-                        plugins: ["add-module-exports"] //'transform-runtime'
+                        plugins: ['add-module-exports'] //'transform-runtime'
                     }
                   }
             ]
