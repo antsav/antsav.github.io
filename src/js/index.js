@@ -19,9 +19,9 @@ class IndexComponent extends Component {
     }
 
     componentWillMount() {
-        callers.fetchAppStoreData((res) => {
-            debugger
-        })
+        // callers.fetchAppStoreData((res) => {
+        //     debugger
+        // })
     }
 
     render() {
