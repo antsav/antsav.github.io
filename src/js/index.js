@@ -1,5 +1,5 @@
-import React from 'react';
-import {render} from 'react-dom';
+import React from 'react'
+import {render} from 'react-dom'
 
 
 let HelloMessage = React.createClass({
@@ -8,4 +8,4 @@ let HelloMessage = React.createClass({
   },
 });
 
-render(<HelloMessage message="World" />, document.getElementById('masterContainer'));
+render(<HelloMessage message="World" />, document.getElementById('masterContainer'))
