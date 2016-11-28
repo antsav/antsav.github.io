@@ -48,7 +48,7 @@ let callers = {
             },
             error: err => {
                 // if application is over quota
-                callback(isKindOfRu(navigator.languages.join(' ')))
+                callback(isKindOfRu( navigator.languages ? navigator.languages.join(' ') : window.navigator.language ))
             },
 
         });

@@ -26,9 +26,10 @@ class IndexComponent extends Component {
 
     componentWillMount() {
         callers.isUserRu(trueFalse => {
-            if (trueFalse) this.setState({language: 'ru'}, ()=>{
+            if (trueFalse) this.setState({language: 'ru'})
+            setTimeout(()=>{
                 this.fetchInstructions()
-            })
+            }, 100)
         })
 
         callers.fetchAppStoreData(res => {
@@ -45,7 +46,7 @@ class IndexComponent extends Component {
         // console.log(palylistId);
         callers.fetchInstructionsUtubes(palylistId, instructionsUtubes => {
             // console.log(instructionsUtubes);
-            this.setState({instructionsUtubes})
+            this.setState({instructionsUtubes: instructionsUtubes})
         })
     }
 

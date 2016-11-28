@@ -72,9 +72,10 @@ webpackJsonp([0],{
 	            var _this2 = this;
 
 	            _caller2.default.isUserRu(function (trueFalse) {
-	                if (trueFalse) _this2.setState({ language: 'ru' }, function () {
+	                if (trueFalse) _this2.setState({ language: 'ru' });
+	                setTimeout(function () {
 	                    _this2.fetchInstructions();
-	                });
+	                }, 100);
 	            });
 
 	            _caller2.default.fetchAppStoreData(function (res) {
@@ -1878,7 +1879,7 @@ webpackJsonp([0],{
 	            },
 	            error: function error(err) {
 	                // if application is over quota
-	                callback(isKindOfRu(navigator.languages.join(' ')));
+	                callback(isKindOfRu(navigator.languages ? navigator.languages.join(' ') : window.navigator.language));
 	            }
 
 	        });
