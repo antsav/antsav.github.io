@@ -4,5 +4,7 @@ let ru = {
     'Download for Android': 'Скачать для Android',
 
     'Screenshots': 'Снимки экрана',
+    'Instructions': 'Инстуркции',
+    'Social media': 'Соцсети',
 }
 export default ru

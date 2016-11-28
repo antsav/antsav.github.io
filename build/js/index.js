@@ -33,6 +33,14 @@ webpackJsonp([0],{
 
 	var _Screenshots2 = _interopRequireDefault(_Screenshots);
 
+	var _Instructions = __webpack_require__(187);
+
+	var _Instructions2 = _interopRequireDefault(_Instructions);
+
+	var _Social = __webpack_require__(188);
+
+	var _Social2 = _interopRequireDefault(_Social);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50,8 +58,9 @@ webpackJsonp([0],{
 	        var _this = _possibleConstructorReturn(this, (IndexComponent.__proto__ || Object.getPrototypeOf(IndexComponent)).call(this, props, context));
 
 	        _this.state = {
+	            language: 'en',
 	            screenshotUrls: [],
-	            language: 'en'
+	            instructionsUtubes: []
 	        };
 	        _this.displayName = 'IndexComponent';
 	        return _this;
@@ -62,24 +71,48 @@ webpackJsonp([0],{
 	        value: function componentWillMount() {
 	            var _this2 = this;
 
+	            _caller2.default.isUserRu(function (trueFalse) {
+	                if (trueFalse) _this2.setState({ language: 'ru' }, function () {
+	                    _this2.fetchInstructions();
+	                });
+	            });
+
 	            _caller2.default.fetchAppStoreData(function (res) {
 	                _this2.setState({
 	                    screenshotUrls: res.screenshotUrls,
 	                    fileSizeBytes: res.fileSizeBytes
 	                });
 	            });
-	            _caller2.default.isUserRu(function (trueFalse) {
-	                // console.log('isUserRu - ' + trueFalse);
-	                if (trueFalse) _this2.setState({ language: 'ru' });
+	        }
+	    }, {
+	        key: 'fetchInstructions',
+	        value: function fetchInstructions() {
+	            var _this3 = this;
+
+	            var palylistId = this.state.language === 'ru' ? 'PLnEHdoruK8DJvpUsv82VyncnXy7oXr79W' : 'PLnEHdoruK8DJ3Cn15-fHbz9ZLF9LmzBwU';
+
+	            // console.log(palylistId);
+	            _caller2.default.fetchInstructionsUtubes(palylistId, function (instructionsUtubes) {
+	                // console.log(instructionsUtubes);
+	                _this3.setState({ instructionsUtubes: instructionsUtubes });
 	            });
 	        }
 	    }, {
+	        key: 'fetchInstagram',
+	        value: function fetchInstagram() {}
+	    }, {
 	        key: 'toggleLanguage',
 	        value: function toggleLanguage() {
+	            var _this4 = this;
+
 	            if (this.state.language === 'ru') {
-	                this.setState({ language: 'en' });
+	                this.setState({ language: 'en', instructionsUtubes: [] }, function () {
+	                    _this4.fetchInstructions();
+	                });
 	            } else {
-	                this.setState({ language: 'ru' });
+	                this.setState({ language: 'ru', instructionsUtubes: [] }, function () {
+	                    _this4.fetchInstructions();
+	                });
 	            }
 	        }
 	    }, {
@@ -96,7 +129,11 @@ webpackJsonp([0],{
 	                    iosSize: this.state.fileSizeBytes }),
 	                _react2.default.createElement(_Screenshots2.default, {
 	                    language: this.state.language,
-	                    screenshotUrls: this.state.screenshotUrls })
+	                    screenshotUrls: this.state.screenshotUrls }),
+	                _react2.default.createElement(_Instructions2.default, {
+	                    language: this.state.language,
+	                    instructionsUtubes: this.state.instructionsUtubes }),
+	                _react2.default.createElement(_Social2.default, null)
 	            );
 	        }
 	    }]);
@@ -1814,27 +1851,45 @@ webpackJsonp([0],{
 	    },
 
 	    isUserRu: function isUserRu(callback) {
+	        var isKindOfRu = function isKindOfRu(language) {
+	            var ruUnderstandLangs = ['ru', // russian
+	            'kk', // kazakh
+	            'be', // belorussian
+	            'uk', // ukranian
+	            'uz', // uzbek
+	            'gl', // galician - georgia
+	            'ky', // kyrgiz
+	            'tk'];
+	            var out = false;
+	            ruUnderstandLangs.every(function (lang) {
+	                if (language.indexOf(lang) !== -1) out = true;
+	                return true;
+	            });
+	            // if (language.length !== 2) out = false
+	            return out;
+	        };
+
 	        _jquery2.default.ajax({
 	            url: 'http://ajaxhttpheaders.appspot.com',
 	            dataType: 'jsonp',
 	            success: function success(headers) {
 	                var language = headers['Accept-Language'].toLowerCase();
-	                // console.log(language);
-	                var ruUnderstandLangs = ['ru', // russian
-	                'kk', // kazakh
-	                'be', // belorussian
-	                'uk', // ukranian
-	                'uz', // uzbek
-	                'gl', // galician - georgia
-	                'ky', // kyrgiz
-	                'tk'];
-	                var out = false;
-	                ruUnderstandLangs.every(function (lang) {
-	                    if (language.indexOf(lang) !== -1) out = true;
-	                    return true;
-	                });
-	                if (language.length !== 2) out = false;
-	                callback(out);
+	                callback(parseLanguage(language));
+	            },
+	            error: function error(err) {
+	                // if application is over quota
+	                callback(isKindOfRu(navigator.languages.join(' ')));
+	            }
+
+	        });
+	    },
+
+	    fetchInstructionsUtubes: function fetchInstructionsUtubes(palylistId, callback) {
+	        _jquery2.default.ajax({
+	            url: ' https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=' + palylistId + '&key=AIzaSyBx5OV-x_f6n3c2_YXHVVLWTu-ZIVuXpQM&maxResults=50',
+	            dataType: 'jsonp',
+	            success: function success(res) {
+	                callback(res.items);
 	            }
 	        });
 	    }
@@ -2084,7 +2139,9 @@ webpackJsonp([0],{
 	    'Download in AppStore': 'Скачать в AppStore',
 	    'Download for Android': 'Скачать для Android',
 
-	    'Screenshots': 'Снимки экрана'
+	    'Screenshots': 'Снимки экрана',
+	    'Instructions': 'Инстуркции',
+	    'Social media': 'Соцсети'
 	};
 	exports.default = ru;
 	module.exports = exports['default'];
@@ -2161,6 +2218,169 @@ webpackJsonp([0],{
 	}(_react.Component);
 
 	exports.default = Screenshots;
+	module.exports = exports['default'];
+
+/***/ },
+
+/***/ 187:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _helper = __webpack_require__(184);
+
+	var _helper2 = _interopRequireDefault(_helper);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Instructions = function (_Component) {
+	    _inherits(Instructions, _Component);
+
+	    function Instructions() {
+	        _classCallCheck(this, Instructions);
+
+	        return _possibleConstructorReturn(this, (Instructions.__proto__ || Object.getPrototypeOf(Instructions)).apply(this, arguments));
+	    }
+
+	    _createClass(Instructions, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'instructionsComponent narrow' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        _helper2.default.loc(this.props.language, 'Instructions')
+	                    ),
+	                    _react2.default.createElement('div', { className: 'line' })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'instructionsContainer wide' },
+	                    this.props.instructionsUtubes.map(function (vid, i) {
+	                        var title = vid.snippet.title.split(' - ')[1] || '...';
+	                        var subTitle = vid.snippet.title.split(' - ')[2] || '...';
+	                        // console.log(vid);
+	                        return _react2.default.createElement('iframe', { key: i, type: 'text/html', width: '90%', height: '350',
+	                            src: 'https://www.youtube.com/embed/' + vid.snippet.resourceId.videoId, frameBorder: '0', allowFullScreen: true });
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Instructions;
+	}(_react.Component);
+
+	exports.default = Instructions;
+	module.exports = exports['default'];
+
+/***/ },
+
+/***/ 188:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _helper = __webpack_require__(184);
+
+	var _helper2 = _interopRequireDefault(_helper);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Social = function (_Component) {
+	    _inherits(Social, _Component);
+
+	    function Social() {
+	        _classCallCheck(this, Social);
+
+	        return _possibleConstructorReturn(this, (Social.__proto__ || Object.getPrototypeOf(Social)).apply(this, arguments));
+	    }
+
+	    _createClass(Social, [{
+	        key: 'instagramClick',
+	        value: function instagramClick() {
+	            window.location.href = 'https://www.instagram.com/gymapme/';
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'socialComponent narrow' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        _helper2.default.loc(this.props.language, 'Social media')
+	                    ),
+	                    _react2.default.createElement('div', { className: 'line' }),
+	                    _react2.default.createElement(
+	                        'ul',
+	                        null,
+	                        _react2.default.createElement(
+	                            'li',
+	                            { className: 'instagram', onClick: this.instagramClick },
+	                            _react2.default.createElement('div', { className: 'logo' }),
+	                            _react2.default.createElement(
+	                                'h2',
+	                                null,
+	                                'Instagram'
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                null,
+	                                'all latest and upcoming changes'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Social;
+	}(_react.Component);
+
+	exports.default = Social;
 	module.exports = exports['default'];
 
 /***/ }

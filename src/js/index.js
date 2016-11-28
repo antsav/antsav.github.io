@@ -8,36 +8,58 @@ import callers from './helpers/caller'
 import Language from './components/Language'
 import Header from './components/Header'
 import Screenshots from './components/Screenshots'
+import Instructions from './components/Instructions'
+import Social from './components/Social'
+
 
 class IndexComponent extends Component {
 
     constructor(props, context) {
         super(props, context);
         this.state = {
-            screenshotUrls: [],
             language: 'en',
+            screenshotUrls: [],
+            instructionsUtubes: [],
         }
         this.displayName = 'IndexComponent';
     }
 
     componentWillMount() {
+        callers.isUserRu(trueFalse => {
+            if (trueFalse) this.setState({language: 'ru'}, ()=>{
+                this.fetchInstructions()
+            })
+        })
+
         callers.fetchAppStoreData(res => {
             this.setState({
                 screenshotUrls: res.screenshotUrls,
                 fileSizeBytes: res.fileSizeBytes,
             });
         })
-        callers.isUserRu(trueFalse => {
-            // console.log('isUserRu - ' + trueFalse);
-            if (trueFalse) this.setState({language: 'ru'})
+    }
+
+    fetchInstructions() {
+        let palylistId = this.state.language === 'ru' ? 'PLnEHdoruK8DJvpUsv82VyncnXy7oXr79W' : 'PLnEHdoruK8DJ3Cn15-fHbz9ZLF9LmzBwU';
+
+        // console.log(palylistId);
+        callers.fetchInstructionsUtubes(palylistId, instructionsUtubes => {
+            // console.log(instructionsUtubes);
+            this.setState({instructionsUtubes})
         })
     }
 
+    fetchInstagram() {}
+
     toggleLanguage() {
         if (this.state.language === 'ru') {
-            this.setState({language: 'en'})
+            this.setState({language: 'en', instructionsUtubes: []}, ()=>{
+                this.fetchInstructions()
+            })
         } else {
-            this.setState({language: 'ru'})
+            this.setState({language: 'ru', instructionsUtubes: []}, ()=>{
+                this.fetchInstructions()
+            })
         }
     }
 
@@ -53,6 +75,11 @@ class IndexComponent extends Component {
                 <Screenshots
                     language={this.state.language}
                     screenshotUrls={this.state.screenshotUrls} />
+                <Instructions
+                    language={this.state.language}
+                    instructionsUtubes={this.state.instructionsUtubes} />
+                <Social />
+
             </div>
         )
     }

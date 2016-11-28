@@ -19,29 +19,47 @@ let callers = {
     },
 
     isUserRu: callback => {
+        let isKindOfRu = language => {
+            let ruUnderstandLangs = [
+                'ru', // russian
+                'kk', // kazakh
+                'be', // belorussian
+                'uk', // ukranian
+                'uz', // uzbek
+                'gl', // galician - georgia
+                'ky', // kyrgiz
+                'tk', // turkmen
+            ]
+            let out = false
+            ruUnderstandLangs.every(lang => {
+                if ( language.indexOf(lang) !== -1 ) out = true
+                return true
+            })
+            // if (language.length !== 2) out = false
+            return out
+        }
+
         $.ajax({
             url: 'http://ajaxhttpheaders.appspot.com',
             dataType: 'jsonp',
-            success: function(headers) {
+            success: headers => {
                 let language = headers['Accept-Language'].toLowerCase()
-                // console.log(language);
-                let ruUnderstandLangs = [
-                    'ru', // russian
-                    'kk', // kazakh
-                    'be', // belorussian
-                    'uk', // ukranian
-                    'uz', // uzbek
-                    'gl', // galician - georgia
-                    'ky', // kyrgiz
-                    'tk', // turkmen
-                ]
-                let out = false
-                ruUnderstandLangs.every(lang => {
-                    if ( language.indexOf(lang) !== -1 ) out = true
-                    return true
-                })
-                if (language.length !== 2) out = false
-                callback(out)
+                callback(parseLanguage(language))
+            },
+            error: err => {
+                // if application is over quota
+                callback(isKindOfRu(navigator.languages.join(' ')))
+            },
+
+        });
+    },
+
+    fetchInstructionsUtubes: (palylistId, callback) => {
+        $.ajax({
+            url: ' https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=' + palylistId + '&key=AIzaSyBx5OV-x_f6n3c2_YXHVVLWTu-ZIVuXpQM&maxResults=50',
+            dataType: 'jsonp',
+            success: res => {
+                callback(res.items);
             },
         });
     },
