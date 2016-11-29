@@ -44,7 +44,7 @@ let callers = {
             dataType: 'jsonp',
             success: headers => {
                 let language = headers['Accept-Language'].toLowerCase()
-                callback(parseLanguage(language))
+                callback(isKindOfRu(language))
             },
             error: err => {
                 // if application is over quota

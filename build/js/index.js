@@ -1875,7 +1875,7 @@ webpackJsonp([0],{
 	            dataType: 'jsonp',
 	            success: function success(headers) {
 	                var language = headers['Accept-Language'].toLowerCase();
-	                callback(parseLanguage(language));
+	                callback(isKindOfRu(language));
 	            },
 	            error: function error(err) {
 	                // if application is over quota
