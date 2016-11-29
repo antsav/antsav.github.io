@@ -67,19 +67,25 @@ class IndexComponent extends Component {
     render() {
         return (
             <div>
+
                 <Language
                     language={this.state.language}
                     toggleLanguage={this.toggleLanguage.bind(this)} />
+
                 <Header
                     language={this.state.language}
                     iosSize={this.state.fileSizeBytes} />
+
                 <Screenshots
                     language={this.state.language}
                     screenshotUrls={this.state.screenshotUrls} />
+
                 <Instructions
                     language={this.state.language}
                     instructionsUtubes={this.state.instructionsUtubes} />
-                <Social />
+
+                <Social
+                    language={this.state.language}/>
 
             </div>
         )

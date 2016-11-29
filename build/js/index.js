@@ -134,7 +134,8 @@ webpackJsonp([0],{
 	                _react2.default.createElement(_Instructions2.default, {
 	                    language: this.state.language,
 	                    instructionsUtubes: this.state.instructionsUtubes }),
-	                _react2.default.createElement(_Social2.default, null)
+	                _react2.default.createElement(_Social2.default, {
+	                    language: this.state.language })
 	            );
 	        }
 	    }]);
@@ -2142,7 +2143,8 @@ webpackJsonp([0],{
 
 	    'Screenshots': 'Снимки экрана',
 	    'Instructions': 'Инстуркции',
-	    'Social media': 'Соцсети'
+	    'Social media': 'Соцсети',
+	    'all latest and upcoming changes': 'последние и предстоящие обновления'
 	};
 	exports.default = ru;
 	module.exports = exports['default'];
@@ -2369,7 +2371,7 @@ webpackJsonp([0],{
 	                            _react2.default.createElement(
 	                                'p',
 	                                null,
-	                                'all latest and upcoming changes'
+	                                _helper2.default.loc(this.props.language, 'all latest and upcoming changes')
 	                            )
 	                        )
 	                    )

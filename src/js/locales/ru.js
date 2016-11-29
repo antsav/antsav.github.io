@@ -6,5 +6,6 @@ let ru = {
     'Screenshots': 'Снимки экрана',
     'Instructions': 'Инстуркции',
     'Social media': 'Соцсети',
+    'all latest and upcoming changes': 'последние и предстоящие обновления',
 }
 export default ru

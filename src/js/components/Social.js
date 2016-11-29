@@ -16,7 +16,7 @@ class Social extends Component {
                         <li className="instagram" onClick={this.instagramClick}>
                             <div className="logo" />
                             <h2>Instagram</h2>
-                            <p>all latest and upcoming changes</p>
+                            <p>{H.loc(this.props.language, 'all latest and upcoming changes')}</p>
                         </li>
                     </ul>
 
