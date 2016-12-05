@@ -2,6 +2,7 @@ let ru = {
     'visual workout log<br/>for professionals': 'визуальный журнал тренировок<br/>для профессионалов',
     'Download in AppStore': 'Скачать в AppStore',
     'Download in Google Play': 'Скачать в Google Play',
+    'Download for Android': 'Скачать для Android',
 
     'Screenshots': 'Снимки экрана',
     'Instructions': 'Инстуркции',

@@ -9,7 +9,8 @@ class Header extends Component {
     }
 
     androidClick() {
-        window.location.href='market://details?id=gymap.antsav'
+        window.location.href = 'dist/android/Gymap 1.7.1.apk';
+        // window.location.href='market://details?id=gymap.antsav'
     }
 
     render() {
@@ -32,7 +33,7 @@ class Header extends Component {
 
                 <div className="downloadButton android"
                      onClick={this.androidClick.bind(this)} >
-                        <p>{H.loc(this.props.language, 'Download in Google Play')}</p>
+                        <p>{H.loc(this.props.language, 'Download for Android')}</p>
                         <div className="fileSize">5 MB</div>
                 </div>
 
