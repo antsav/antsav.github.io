@@ -9,7 +9,7 @@ class Header extends Component {
     }
 
     androidClick() {
-        window.location.href='https://play.google.com/store/apps/details?id=gymap.antsav'
+        window.location.href='market://details?id=gymap.antsav'
     }
 
     render() {
