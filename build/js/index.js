@@ -2030,8 +2030,8 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'androidClick',
 	        value: function androidClick() {
-	            window.location.href = 'dist/android/Gymap 1.7.1.apk';
-	            // window.location.href='market://details?id=gymap.antsav'
+	            // window.location.href = 'dist/android/Gymap 1.7.1.apk';
+	            window.location.href = 'market://details?id=gymap.antsav';
 	        }
 	    }, {
 	        key: 'render',
@@ -2073,7 +2073,7 @@ webpackJsonp([0],{
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
-	                        _helper2.default.loc(this.props.language, 'Download for Android')
+	                        _helper2.default.loc(this.props.language, 'Download in Google Play')
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
