@@ -2030,7 +2030,7 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'androidClick',
 	        value: function androidClick() {
-	            window.location.href = 'dist/android/Gymap 1.7.apk';
+	            window.location.href = 'https://play.google.com/store/apps/details?id=gymap.antsav';
 	        }
 	    }, {
 	        key: 'render',
@@ -2072,7 +2072,7 @@ webpackJsonp([0],{
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
-	                        _helper2.default.loc(this.props.language, 'Download for Android')
+	                        _helper2.default.loc(this.props.language, 'Download in Google Play')
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -2139,7 +2139,7 @@ webpackJsonp([0],{
 	var ru = {
 	    'visual workout log<br/>for professionals': 'визуальный журнал тренировок<br/>для профессионалов',
 	    'Download in AppStore': 'Скачать в AppStore',
-	    'Download for Android': 'Скачать для Android',
+	    'Download in Google Play': 'Скачать в Google Play',
 
 	    'Screenshots': 'Снимки экрана',
 	    'Instructions': 'Инстуркции',
