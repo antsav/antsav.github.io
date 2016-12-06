@@ -25,7 +25,9 @@ class Header extends Component {
 
                 <div className="downloadButton ios"
                     onClick={this.iosClick.bind(this)} >
-                    <p>{H.loc(this.props.language, 'Download in AppStore')}</p>
+                    <p dangerouslySetInnerHTML={{
+                        __html: H.loc(this.props.language, 'Download in<br/>AppStore'),
+                    }} ></p>
                     {this.props.iosSize &&
                         <div className="fileSize">{H.bytesToSize(this.props.iosSize)}</div>
                     }
@@ -33,8 +35,10 @@ class Header extends Component {
 
                 <div className="downloadButton android"
                      onClick={this.androidClick.bind(this)} >
-                        <p>{H.loc(this.props.language, 'Download in Google Play')}</p>
-                        <div className="fileSize">5 MB</div>
+                        <p dangerouslySetInnerHTML={{
+                            __html: H.loc(this.props.language, 'Download in<br/>Google Play'),
+                        }} ></p>
+                        <div className="fileSize">4 MB</div>
                 </div>
 
 

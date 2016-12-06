@@ -2055,11 +2055,9 @@ webpackJsonp([0],{
 	                    'div',
 	                    { className: 'downloadButton ios',
 	                        onClick: this.iosClick.bind(this) },
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _helper2.default.loc(this.props.language, 'Download in AppStore')
-	                    ),
+	                    _react2.default.createElement('p', { dangerouslySetInnerHTML: {
+	                            __html: _helper2.default.loc(this.props.language, 'Download in<br/>AppStore')
+	                        } }),
 	                    this.props.iosSize && _react2.default.createElement(
 	                        'div',
 	                        { className: 'fileSize' },
@@ -2070,15 +2068,13 @@ webpackJsonp([0],{
 	                    'div',
 	                    { className: 'downloadButton android',
 	                        onClick: this.androidClick.bind(this) },
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _helper2.default.loc(this.props.language, 'Download in Google Play')
-	                    ),
+	                    _react2.default.createElement('p', { dangerouslySetInnerHTML: {
+	                            __html: _helper2.default.loc(this.props.language, 'Download in<br/>Google Play')
+	                        } }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'fileSize' },
-	                        '5 MB'
+	                        '4 MB'
 	                    )
 	                )
 	            );
@@ -2139,8 +2135,8 @@ webpackJsonp([0],{
 	});
 	var ru = {
 	    'visual workout log<br/>for professionals': 'визуальный журнал тренировок<br/>для профессионалов',
-	    'Download in AppStore': 'Скачать в AppStore',
-	    'Download in Google Play': 'Скачать в Google Play',
+	    'Download in<br/>AppStore': 'Скачать в<br/>AppStore',
+	    'Download in<br/>Google Play': 'Скачать в<br/>Google Play',
 	    'Download for Android': 'Скачать для Android',
 
 	    'Screenshots': 'Снимки экрана',
