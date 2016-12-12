@@ -125,6 +125,7 @@ webpackJsonp([0],{
 	                _react2.default.createElement(_Language2.default, {
 	                    language: this.state.language,
 	                    toggleLanguage: this.toggleLanguage.bind(this) }),
+	                _react2.default.createElement('div', { className: 'lifter' }),
 	                _react2.default.createElement(_Header2.default, {
 	                    language: this.state.language,
 	                    iosSize: this.state.fileSizeBytes }),

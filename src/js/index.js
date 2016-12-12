@@ -72,6 +72,8 @@ class IndexComponent extends Component {
                     language={this.state.language}
                     toggleLanguage={this.toggleLanguage.bind(this)} />
 
+                <div className="lifter" />
+
                 <Header
                     language={this.state.language}
                     iosSize={this.state.fileSizeBytes} />
